@@ -5,6 +5,12 @@ body {
   font-style: normal;
 }
 
+h1 {
+  position: relative;
+  right: 300px;
+  top: 42px;
+  font-size: 24px;
+}
 h1,
 p {
   color: white;
@@ -14,6 +20,7 @@ p {
 h2 {
   color: #fff27b;
   margin: 0px;
+  font-size: 40px;
 }
 
 .main {
@@ -24,9 +31,7 @@ h2 {
   text-align: center;
   gap: 20px;
 }
-h1 {
-  margin-top: 20px;
-}
+
 .board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -36,8 +41,9 @@ h1 {
   width: max-content;
 }
 .cell {
-  background: white;
-  border: 2px solid #333;
+  background: transparent;
+  border: 2px solid rgb(225, 225, 225);
+  border-radius: 5px;
   font-size: 3rem;
   display: flex;
   align-items: center;
@@ -65,4 +71,17 @@ button {
   border: none;
   border-radius: 10px;
   font-family: "lores-12-bold-alt-oakland", sans-serif;
+}
+
+.cell img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.emoji-img {
+  width: 60px;
+  height: 45px;
+  vertical-align: middle;
+  margin-left: 8px;
 }
