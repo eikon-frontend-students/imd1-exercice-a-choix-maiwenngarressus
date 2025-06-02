@@ -3,6 +3,7 @@ body {
   font-family: "lores-12-bold-alt-oakland", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: white;
 }
 
 h1 {
@@ -39,6 +40,7 @@ h2 {
   gap: 5px;
   margin: 20px auto;
   width: max-content;
+  margin-top: 70px;
 }
 .cell {
   background: transparent;
@@ -58,6 +60,16 @@ h2 {
   font-size: 1.5rem;
   color: #fff27b;
 }
+
+.trap-active .cell.trap {
+  background-color: #eab6dd;
+  background-image: url(bombe.png);
+  background-size: 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: #eab6dd;
+}
+
 .reset {
   margin-top: 20px;
   padding: 10px 20px;
@@ -73,15 +85,27 @@ button {
   font-family: "lores-12-bold-alt-oakland", sans-serif;
 }
 
-.cell img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+.img {
+  display: none;
 }
 
-.emoji-img {
-  width: 60px;
-  height: 45px;
-  vertical-align: middle;
-  margin-left: 8px;
+.status.lost + .img {
+  display: block;
+  text-align: center;
+}
+
+.ensemble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.img img {
+  width: 100px;
+  height: auto;
+}
+
+.ensemble .img:not(:visible) {
+  display: none;
 }

@@ -4,7 +4,7 @@ const resetBtn = document.getElementById("reset");
 
 let currentPlayer = "X";
 let grid = Array(9).fill(null);
-let trapIndex = Math.floor(Math.random() * 9);
+let trapIndex;
 let gameOver = false;
 
 const winningCombinations = [
@@ -17,6 +17,10 @@ const winningCombinations = [
   [0, 4, 8],
   [2, 4, 6],
 ];
+
+function setTrapIndex() {
+  trapIndex = Math.floor(Math.random() * 9);
+}
 
 function checkWinner() {
   for (const combo of winningCombinations) {
@@ -44,22 +48,12 @@ function playMove(index) {
 
   const cell = board.querySelector(`.cell[data-index="${index}"]`);
 
+  // Vérifie si la case cliquée est le piège
   if (index === trapIndex) {
-    // Supprimer le texte existant
-    cell.textContent = "";
-
-    // Créer l'image de la bombe
-    const img = document.createElement("img");
-    img.src = "bombe.png";
-    img.alt = "Bombe";
-    img.style.width = "60%";
-    img.style.height = "60%";
-    img.style.objectFit = "contain";
-
-    cell.appendChild(img);
-    cell.style.backgroundColor = "#eab6dd";
-    statusText.innerHTML = `Case piégée ! Joueur ${currentPlayer} a perdu <img src="perdu.png" alt="Perdu" class="emoji-img">`;
+    document.body.classList.add("trap-active");
     gameOver = true;
+    statusText.textContent = `Joueur ${currentPlayer} a perdu !`;
+    statusText.classList.add("lost");
     return;
   }
 
@@ -123,19 +117,29 @@ function resetGame() {
   gameOver = false;
   trapIndex = Math.floor(Math.random() * 9);
   statusText.textContent = "Joueur X commence";
+  statusText.classList.remove("lost");
+  setTrapIndex();
 
-  board.querySelectorAll(".cell").forEach((cell) => {
+  document.body.classList.remove("trap-active");
+
+  board.querySelectorAll(".cell").forEach((cell, index) => {
     cell.textContent = "";
     cell.classList.remove("taken");
-    cell.style.backgroundColor = "white";
+    cell.classList.remove("trap");
+    // remet le trap sur une case aléatoire
+    if (index === trapIndex) {
+      cell.classList.add("trap");
+    }
   });
 }
 
 function createBoard() {
+  setTrapIndex();
   board.innerHTML = "";
   for (let i = 0; i < 9; i++) {
     const cell = document.createElement("div");
     cell.className = "cell";
+    if (i === trapIndex) cell.classList.add("trap");
     cell.dataset.index = i;
     cell.addEventListener("click", handleClick);
     board.appendChild(cell);
