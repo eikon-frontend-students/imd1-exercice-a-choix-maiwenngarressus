@@ -1,0 +1,111 @@
+body {
+  background-color: #09081f;
+  font-family: "lores-12-bold-alt-oakland", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+}
+
+h1 {
+  position: relative;
+  right: 300px;
+  top: 42px;
+  font-size: 24px;
+}
+h1,
+p {
+  color: white;
+  margin: 0px;
+}
+
+h2 {
+  color: #fff27b;
+  margin: 0px;
+  font-size: 40px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  margin: 20px auto;
+  width: max-content;
+  margin-top: 70px;
+}
+.cell {
+  background: transparent;
+  border: 2px solid rgb(225, 225, 225);
+  border-radius: 5px;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.cell.taken {
+  cursor: not-allowed;
+}
+.status {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #fff27b;
+}
+
+.trap-active .cell.trap {
+  background-color: #eab6dd;
+  background-image: url(bombe.png);
+  background-size: 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: #eab6dd;
+}
+
+.reset {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button {
+  background-color: white;
+  color: #09091d;
+  border: none;
+  border-radius: 10px;
+  font-family: "lores-12-bold-alt-oakland", sans-serif;
+}
+
+.img {
+  display: none;
+}
+
+.status.lost + .img {
+  display: block;
+  text-align: center;
+}
+
+.ensemble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.img img {
+  width: 100px;
+  height: auto;
+}
+
+.ensemble .img:not(:visible) {
+  display: none;
+}
